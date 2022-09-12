@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+
+    <title>Dark web search engine</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+
+  </head>
+  <body>
+    <main id="main" style="height: 100vh ;background:linear-gradient(rgba(0, 0, 0, 0.863), rgba(34, 185, 172, 0.541)), url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGFyayUyMHdlYnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');background-position:center; background-size:cover; background-attachment:fixed; background-repeat:no-repeat; color:white">
+
+    <div class="container">
+      <div class="masthead">
+        <img src="/static/img/logo.png" style="width:80px;height:80px;" alt="Logo" align="left">
+        <h1 class="" align="middle">Dark web Crawler</h1>
+        <br>
+        <br>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="/list">Show all pages</a></li>
+            <li class="active"><a href="/add">update ES</a></li>
+            <li><a href="/search">Search</a></li>
+          </ul>
+        </nav>
+      </div>
+
+
+    <div class="jumbotron">
+      <p class="lead">Update ES from mongodb</p>
+      <p><br><a class="btn btn-lg btn-success" onclick="myFunction()" href="/post" role="button">Refresh</a></p>
+      <h2 id="msg" style="color: yellow;"></h2>
+    </div>
+
+   
+
+<script>
+function myFunction() {
+  document.getElementById("msg").innerText="...........Please wait Data is pushing...........";
+}
+</script>
+
+      </div>
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+    </main>
+  </body>
+</html>

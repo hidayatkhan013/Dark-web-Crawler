@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+    
+
+    <style>
+      /* Force scrollbars onto browser window */
+      body {
+      margin-bottom: 200%;
+      }
+      
+      /* Box styles */
+      .myBox {
+      border: none;
+      padding: 5px;
+      font: 15px sans-serif;
+      width: 100%;
+      height: 300px;
+      overflow: scroll;
+      background-color:whitesmoke;
+      }
+      
+      /* Scrollbar styles */
+      ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+      }
+      
+      ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 10px rgb(4, 0, 255);
+      border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: rgb(11, 36, 150); 
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.678); 
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+      background: #ac1085;
+      }
+      </style>
+
+    <title>Dark web search engine</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+  </head>
+  <body style="background-color: #cde;">
+
+
+    <div class="container" >
+      <div class="masthead">
+        <div class="header" style="display: flex; align-items: center; justify-content: space-between; padding:1rem 0; width: 70%;">
+          <img src="/static/img/logo.png" style="width:80px;height:80px;" alt="Logo" align="left">
+          <h1 class="" align="middle">Dark web Crawler</h1>
+        </div>
+        
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="/list">Show Pages</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <br>
+
+        <div class="jumbotron">
+        </div>
+      <br>
+
+<form action="/search/results" method="post">
+  <div class="input-group">
+    <input type="text" class="form-control input-lg" name="input" placeholder="Search"  autofocus>
+    <div class="input-group-btn">
+      <button class="btn btn-primary btn-lg" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+
+
+
+      <div class="container">
+      <div class="jumbotron">
+      </div>
+
+
+    
+     {% for hit in res['hits']['hits'] %}
+     <h3 style="  border-radius: 15px; background: #73AD21; padding: 20px; width: 90%; height: 15%;">{{ hit['_source']['Name'] }}</h3>
+     <div class="myBox">
+       
+       {{ hit['_source']['PageText'] }}
+       </div>
+       <br><br>
+       {% endfor %}
+
+        
+ 
+
+      </div>
+    </div>
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+   
+  </body>
+</html>
